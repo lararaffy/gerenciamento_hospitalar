@@ -38,4 +38,44 @@ def menu():
 
             elif opcao == '3':
                 cpf = input("CPF: ")
-                hospital_db.pesquisar_paciente(conexao, cpf)
+                hospital_db.pesquisar_paciente(conexao, cpf)
+
+            elif opcao == '4':
+                crm = input("CRM: ")
+                hospital_db.pesquisar_medico(conexao, crm)
+
+            elif opcao == '5':
+                cpf = input("CPF: ")
+                hospital_db.excluir_paciente(conexao, cpf)
+
+            elif opcao == '6':
+                crm = input("CRM: ")
+                hospital_db.excluir_medico(conexao, crm)
+
+            elif opcao == '7':
+                paciente_id = int(input("ID do Paciente: "))
+                medico_id = int(input("ID do Médico: "))
+                data = input("Data (AAAA-MM-DD e HH:MM:SS): ")
+                hospital_db.agendar_consulta(conexao, paciente_id, medico_id, data)
+
+            elif opcao == '8':
+                paciente_id = int(input("ID do Paciente: "))
+                medico_id = int(input("ID do Médico: "))
+                descricao = input("Descrição do Procedimento: ")
+                data = input('Data e Hora (AAAA-MM-DD e HH:MM:SS): ')
+                hospital_db.registrar_procedimento(conexao, paciente_id, medico_id, descricao, data)
+
+            elif opcao == '9':
+                print("Saindo do programa.")
+                break
+
+            else:
+                print("Opção inválida. Escolha uma opção de 1 a 9.")
+
+        except Exception as e:
+            print(f"Ocorreu um erro: {e}")
+
+    hospital_db.encerrar_conexao(conexao)
+
+#if _name_ == "_main_":
+menu()
